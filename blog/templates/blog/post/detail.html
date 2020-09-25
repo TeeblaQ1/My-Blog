@@ -1,0 +1,175 @@
+{% extends "blog/base4.html" %}
+{% load blog_tags %}
+{% load social_share %}
+
+{% block title %}{{ post.title }} - My Blog{% endblock %}
+
+{% block content %}
+	<article class="blog-post px-3 py-5 p-md-5 min-vh-100" id="top">
+		<div class="container">
+			<header class="blog-post-header">
+				<h2 class="title mb-2">{{ post.title }}</h2>
+				<div class="meta mb-3">
+					<span class="date">Published {{ post.publish }} by {{ post.author }}</span>
+					<span class="time">
+						{{ post.read_length }} minute{{ post.read_length|pluralize}} read
+					</span>
+					<span class="comment">
+						<a href="#comment">
+						{% with comments.count as total_comments %}
+						{{ total_comments }} comment{{ total_comments|pluralize}}
+						{% endwith %}
+						</a>
+					</span>
+					{% with post.tags.count as total_tags %}
+						{% if total_tags %}
+							<br>
+							<span class="comment">
+							Tags: 
+							{% for tag in post.tags.all %}
+								<a href="{% url 'blog:post_list_by_tag' tag.slug %}">
+									{{ tag.name }}
+								</a>
+								{% if not forloop.last %}, {% endif %}
+							{% endfor %}
+							</span>
+						{% else %}
+							<br>
+							<span class="comment">
+								<em>No tags added</em>
+							</span>
+						{% endif %}
+					{% endwith %}
+				</div>
+			</header>
+			<div class="blog-post-body text-justify">
+				{{ post.body|markdown}}
+				<a href="#top" ><i class="fa fa-arrow-up mr-2"></i>Back To Top</a><br><br>
+				<strong class="mr-2">SHARE ARTICLE:</strong>{% post_to_facebook post.get_absolute_url "Facebook" %}{% post_to_twitter post.get_absolute_url "Twitter" %}{% post_to_whatsapp post.get_absolute_url "WhatsApp" %}{% send_email object.title "New Article: {{ post.title }}. Check it out!" post.get_absolute_url "Email" %}
+				<hr>
+					{% with post.tags.count as total_tags %}
+						{% if total_tags %}
+							<br>
+							<span class="comment">
+							<strong>TAGS: </strong>
+							{% for tag in post.tags.all %}
+								<a href="{% url 'blog:post_list_by_tag' tag.slug %}"><button class="btn btn-secondary">
+									{{ tag.name }} </button>
+								</a>
+								{% if not forloop.last %}, {% endif %}
+							{% endfor %}
+							</span>
+						{% endif %}
+					{% endwith %}
+			</div>
+			<hr>
+			<div class="jumbotron theme-bg-light pt-3">
+				{% if post.get_next_by_publish.title %}
+					<div class="float-left pb-3"><a href="{{ post.get_next_by_publish.get_absolute_url }}"><i class="fa fa-arrow-left mr-2"></i> PREVIOUS: {{ post.get_next_by_publish.title }}</a></div>
+				{% endif %}
+				{% if post.get_previous_by_publish.title %}
+					<div class="float-right"><a href="{{ post.get_previous_by_publish.get_absolute_url }}"> NEXT: {{ post.get_previous_by_publish.title }}<i class="fa fa-arrow-right ml-2"></i></a></div>
+				{% endif %}
+			</div>
+			<h4 class="mb-2">Similar Posts</h4>
+			{% for post in similar_posts %}
+				<ul>
+					<li><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></li>
+				</ul>
+			{% empty %}
+				<em>There are no similar posts yet.</em>
+			{% endfor %}
+			<hr>
+			{% with comments.count as total_comments %}
+				{% if comments.count > 0 %}
+					<h5 id="comment">{{ total_comments }} thought{{ total_comments|pluralize }} on "{{ post.title }}"</h5>
+				{% endif %}
+			{% endwith %}
+			{% for comment in comments %}
+				<div class="comment jumbotron theme-bg-light px-0 py-0">
+					<p class="info">
+						<em>{{ comment.name }}</em> commented. {{ comment.created }}
+					</p>
+					{{ comment.body|linebreaks }}
+				</div>
+			{% empty %}
+			<strong><em>Be the first to comment!</em></strong>
+			{% endfor %}
+			{% if new_comment %}
+				<strong>Your comment has been added</strong>
+				<section id="contact" class="section-padding theme-bg-light py-3">
+			      <div class="container">
+			        <div class="row">
+			          <div class="col-md-12 text-center">
+			            <h2 class="service-title pad-bt15 pt-3">Leave a comment</h2>
+			            <hr class="bottom-line white-bg">
+			          </div>
+			          <div class="col-md-8 col-sm-8 col-xs-12">
+			            <div class="contact-form">
+			              <form action="" method="post" role="form" class="contactForm">
+			                <div class="col-md-6 padding-right-zero">
+			                  <div class="form-group">
+			                    <input type="text" name="name" class="form-control" id="id_name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars"/>
+			                    <div class="validation"></div>
+			                  </div>
+			                </div>
+			                <div class="col-md-6">
+			                  <div class="form-group">
+			                    <input type="text" name="email" class="form-control" id="id_email" placeholder="Your Email" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+			                    <div class="validation"></div>
+			                  </div>
+			                </div>
+			                <div class="col-md-12">
+			                  <div class="form-group">
+			                    <textarea id="id_body" class="form-control" name="body" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Type in your comment here..."></textarea>
+			                  </div>
+			                  <button type="submit" class="btn btn-primary btn-submit mb-3">POST COMMENT</button>
+			                </div>
+			                {% csrf_token %}
+			              </form>
+			            </div>
+			          </div>
+			        </div>
+			      </div>
+			    </section>
+			{% else %}
+				<section id="contact" class="section-padding theme-bg-light py-3">
+			      <div class="container">
+			        <div class="row">
+			          <div class="col-md-12 text-center">
+			            <h2 class="service-title pad-bt15 pt-3">Leave a comment</h2>
+			            <hr class="bottom-line white-bg">
+			          </div>
+			          <div class="col-md-8 col-sm-8 col-xs-12">
+			            <div class="contact-form">
+			              <form action="" method="post" role="form" class="contactForm">
+			                <div class="col-md-6 padding-right-zero">
+			                  <div class="form-group">
+			                    <input type="text" name="name" class="form-control" id="id_name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars"/>
+			                    <div class="validation"></div>
+			                  </div>
+			                </div>
+			                <div class="col-md-6">
+			                  <div class="form-group">
+			                    <input type="text" name="email" class="form-control" id="id_email" placeholder="Your Email" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+			                    <div class="validation"></div>
+			                  </div>
+			                </div>
+			                <div class="col-md-12">
+			                  <div class="form-group">
+			                    <textarea id="id_body" class="form-control" name="body" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Type in your comment here..."></textarea>
+			                  </div>
+			                  <button type="submit" class="btn btn-primary btn-submit mb-3 mr-2">POST COMMENT</button>
+			                </div>
+			                {% csrf_token %}
+			              </form>
+			            </div>
+			          </div>
+			        </div>
+			      </div>
+			    </section>
+			{% endif %}
+		</div>	
+	</article>
+
+{% endblock %}

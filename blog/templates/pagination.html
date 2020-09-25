@@ -1,0 +1,13 @@
+<div>
+	<nav class="blog-nav nav nav-justified my-5">
+		{% if page.has_previous %}
+			<a class="nav-link-prev nav-item nav-link rounded-left" href="?page={{ page.previous_page_number }}">Previous<i class="arrow-prev fas fa-long-arrow-alt-left"></i></a>
+		{% endif %}
+		<span class="nav-link nav-item">
+			Page {{ page.number }}/{{ page.paginator.num_pages }}
+		</span>
+		{% if page.has_next %}
+			<a class="nav-link-next nav-item nav-link rounded-right" href="?page={{ page.next_page_number }}">Next<i class="arrow-next fas fa-long-arrow-alt-right"></i></a>
+		{% endif %}
+	</nav>
+</div>

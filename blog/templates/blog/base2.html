@@ -1,0 +1,94 @@
+{% load blog_tags %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{% block title %}{% endblock %}</title>
+	<!-- <link rel="stylesheet" type="text/css" href="{% static "css/blog.css" %}> -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" href="favicon.ico">
+	<!-- Font Awesome JS -->
+	<script defer src="https://use.fontawesome.com/releases/v5.7.1/js/all.js" integrity="sha384-eVEQC9zshBn0rFj4+TU78eNA19HMNigMviK/PU/FFjLXqa/GKPgX58rvt5Z8PLs7" crossorigin="anonymous"></script>
+	<!-- Theme CSS -->  
+    <link id="theme-style" rel="stylesheet" href="{% static 'assets/css/theme-4.css' %}">
+    <!-- Browser Icon -->
+    <link rel="shortcut icon" href="{% static 'assets/images/favicon.ico' %}">
+</head>
+<body>
+	<header class="header text-center">	    
+	    <h1 class="blog-name pt-lg-4 mb-0"><a href="index.html">John Doe's Blog</a></h1>
+        
+	    <nav class="navbar navbar-expand-lg navbar-dark">
+           
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+			</button>
+			
+			<div id="navigation" class="collapse navbar-collapse flex-column" >
+				<div class="profile-section pt-3 pt-lg-0">
+				    <img class="profile-image mb-3 rounded-circle mx-auto" src="{% static 'assets/images/profile.png' %}" alt="image" >
+					<!--//bio-->
+					<div class="bio mb-3">Hi, my name is John Doe. Briefly introduce yourself here. You can also provide a link to the about page.<br><a href="about.html">Find out more about me</a></div>
+					<!--//social-list-->
+					<ul class="social-list list-inline py-3 mx-auto">
+			            <li class="list-inline-item"><a href="#"><i class="fab fa-facebook fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="#"><i class="fab fa-twitter fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="#"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+			            <!-- <li class="list-inline-item"><a href="#"><i class="fab fa-github-alt fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="#"><i class="fab fa-stack-overflow fa-fw"></i></a></li> -->
+			        </ul>
+			        <!--//profile-section-->
+			        <hr> 
+				</div>
+				
+				<ul class="navbar-nav flex-column text-left">
+					<li class="nav-item">
+					    <a class="nav-link" href="{% url 'blog:post_index' %}"><i class="fas fa-home fa-fw mr-2"></i>Blog Home <span class="sr-only">(current)</span></a>
+					</li>
+					<li class="nav-item active">
+					    <a class="nav-link" href="{% url 'blog:post_list' %}"><i class="fas fa-bookmark fa-fw mr-2"></i>Articles</a>
+					</li>
+					<li class="nav-item">
+					    <a class="nav-link" href="{% url 'blog:about_page' %}"><i class="fas fa-user fa-fw mr-2"></i>About</a>
+					</li>
+					<li class="nav-item">
+					    <a class="nav-link" href="{% url 'blog:contactus' %}"><i class="fa fa-paper-plane mr-2"></i>Contact Us</a></a>
+					</li>
+				</ul>
+				<div id="searchbar" class="my-2 my-md-3">
+					<form class="navbar-form form-inline ml-auto" method="get" action="{% url 'blog:post_search' %}">
+						<div class="input-group search-box">
+							<input type="search" name = "query" class="form-control" placeholder="Search articles, news and tags" value="{{ request.GET.query }}">
+							<div class="input-group-append">
+								<button type="submit" class="btn bg-white"><span><i class="fa fa-search"></i><span class="sr-only"> Search</span></span></button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+			
+		</nav>
+    </header>
+	<div class="main-wrapper min-vh-100">
+		{% block content %}
+		{% endblock %}
+
+		<footer class="footer py-2 theme-bg-dark text-center w-100">
+		   
+	        <!--/* This template is released under the Creative Commons Attribution 3.0 License. Please keep the attribution link below when using for your own project. Thank you for your support. :) If you'd like to use the template without the attribution, you can buy the commercial license via our website: themes.3rdwavemedia.com */-->
+            <small class="copyright">Designed with <i class="fas fa-heart" style="color: #fb866a;"></i> by <a href="http://themes.3rdwavemedia.com" target="_blank">TeeblaQ</a> for bloggers</small>
+		   
+		</footer>
+	</div>
+	
+	
+	<!-- "{% static "assets/css/theme-1.css" %}"> -->
+	<!-- Javascript -->          
+    <script src="{% static "assets/plugins/jquery-3.3.1.min.js" %}"></script>
+    <script src="{% static "assets/plugins/popper.min.js" %}"></script>
+    <script src="{% static "assets/plugins/bootstrap/js/bootstrap.min.js" %}"></script> 
+
+    <!-- Style Switcher (REMOVE ON YOUR PRODUCTION SITE) -->
+<!-- <script src="assets/js/demo/style-switcher.js"></script> -->
+</body>
+</html>

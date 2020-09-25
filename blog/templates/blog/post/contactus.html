@@ -1,0 +1,67 @@
+{% extends "blog/base4.html" %}
+
+{% block title %}
+	Contact Us
+{% endblock %}
+
+{% block content %}
+
+	{% if messages %}
+		<ul>
+			{% for message in messages %}
+			<li {% if messages.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+			{% endfor %}
+		</ul>
+	{% endif %}
+
+	<section id="contact" class="section-padding theme-bg-light py-3 min-vh-100">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <h2 class="service-title pad-bt15 text-primary pt-3">KEEP IN TOUCH WITH US</h2>
+            <p class="sub-title pad-bt15">We'd love to hear from you! Please drop us a line if you have any query or question.</p>
+            <hr class="bottom-line white-bg">
+          </div>
+          <div class="col-md-4 col-sm-4 col-xs-12">
+            <div class="loction-info white">
+              <p><i class="fa fa-map-marker fa-fw pull-left fa-2x"></i>A99 Adam Street<br>Texas, TX 555072</p>
+              <p><i class="fa fa-envelope-o fa-fw pull-left fa-2x"></i>info@baker.com</p>
+              <p><i class="fa fa-phone fa-fw pull-left fa-2x"></i>+41 5787 2323</p>
+            </div>
+          </div>
+                    <div class="col-md-8 col-sm-8 col-xs-12">
+            <div class="contact-form">
+              <form action="" method="post" role="form" class="contactForm">
+                <div class="col-md-6 padding-right-zero">
+                  <div class="form-group">
+                    <input type="text" name="name" class="form-control" id="id_name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars"/>
+                    <div class="validation"></div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <input type="text" name="email" class="form-control" id="id_email" placeholder="Your Email" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                    <div class="validation"></div>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <input type="text" class="form-control" name="subject" id="id_subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject"/>
+                    <div class="validation"></div>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <textarea id="id_message" class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
+                  </div>
+                  <button type="submit" class="btn btn-primary btn-submit mb-3"><i class="fa fa-paper-plane"></i> SEND</button>
+                </div>
+                {% csrf_token %}
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+{% endblock %}
