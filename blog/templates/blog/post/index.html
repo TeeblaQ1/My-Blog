@@ -19,6 +19,7 @@
             </form>
 		</div><!--//container-->
 	</section>	
+	<section class="min-vh-100">
 		<h3 class="title mt-3 container text-center">
 		<p>Latest Articles</p>
 		<small style="font-family: 'Helvetica', FontAwesome, sans-serif; font-size: 20px">We are committed to giving you top-notch articles consistently.</small>
@@ -30,7 +31,7 @@
 		<p>Most Commented Articles</p>
 		</h3>
 		{% get_most_commented_posts as most_commented_posts %}
-			<section class="blog-list px-3 py-2 p-md-2 min-vh-100">
+			<section class="blog-list px-3 py-2 p-md-2">
 				<div class="container">
 					{% if tag %}
 						<h3 class="title mb-3 pb-3">Posts tagged with "{{ tag.name }}"</h3>
@@ -78,6 +79,7 @@
 					{% endfor %}
 				</div>
 			</section>
+		</section>
 	<section id="contact" class="section-padding theme-bg-light">
       <div class="container align-item-centre">
         <div class="row">
