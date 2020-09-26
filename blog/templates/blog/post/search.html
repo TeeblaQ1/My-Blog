@@ -48,7 +48,7 @@
 										{% endif %}
 									{% endwith %}
 								</div>
-							    <div class="intro">{{ post.body|markdown|truncatewords_html:35 }}</div>
+							    <div class="intro" style="max-height: 300px; overflow: hidden;">{{ post.body|markdown|truncatewords_html:35 }}</div>
 							    <a class="more-link" href="{{ post.get_absolute_url }}">Read more &rarr;</a>
 						    </div><!--//media-body-->
 					    </div><!--//media-->
@@ -56,7 +56,7 @@
 			{% empty %}
 				<p>Sorry, no result matching "{{ query }}"</p>
 			{% endfor %}
-			<p><a href="{% url 'blog:post_search' %}">Search again</a></p>
+			<p><a href="{% url 'blog:post_index' %}">Go back home and search again</a></p>
 		{% endif %}
 	</div>
 {% endblock %}
