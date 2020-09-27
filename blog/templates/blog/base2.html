@@ -28,7 +28,7 @@
 				<div class="profile-section pt-3 pt-lg-0">
 				    <img class="profile-image mb-3 rounded-circle mx-auto" src="{% static 'assets/images/profile.png' %}" alt="image" >
 					<!--//bio-->
-					<div class="bio mb-3">Hi, my name is John Doe. Briefly introduce yourself here. You can also provide a link to the about page.<br><a href="about.html">Find out more about me</a></div>
+					<div class="bio mb-3">Hi, my name is John Doe. Briefly introduce yourself here. You can also provide a link to the about page.<br><a href="{% url 'blog:about_page' %}">Find out more about me</a></div>
 					<!--//social-list-->
 					<ul class="social-list list-inline py-3 mx-auto">
 			            <li class="list-inline-item"><a href="#"><i class="fab fa-facebook fa-fw"></i></a></li>

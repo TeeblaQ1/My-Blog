@@ -3,6 +3,8 @@
 {% load social_share %}
 
 {% block title %}{{ post.title }} - My Blog{% endblock %}
+{% block description %}{{ post.description }}{% endblock %}
+{% block keywords %}{{ post.keywords }}{% endblock %}
 
 {% block content %}
 	<article class="blog-post px-3 py-5 p-md-5 min-vh-100" id="top">
@@ -68,7 +70,7 @@
 					<div class="float-left pb-3"><a href="{{ post.get_next_by_publish.get_absolute_url }}"><i class="fa fa-arrow-left mr-2"></i> PREVIOUS: {{ post.get_next_by_publish.title }}</a></div>
 				{% endif %}
 				{% if post.get_previous_by_publish.title %}
-					<div class="float-right"><a href="{{ post.get_previous_by_publish.get_absolute_url }}"> NEXT: {{ post.get_previous_by_publish.title }}<i class="fa fa-arrow-right ml-2"></i></a></div>
+					<div class="float-right pb-3"><a href="{{ post.get_previous_by_publish.get_absolute_url }}"> NEXT: {{ post.get_previous_by_publish.title }}<i class="fa fa-arrow-right ml-2"></i></a></div>
 				{% endif %}
 			</div>
 			<h4 class="mb-2">Similar Posts</h4>
