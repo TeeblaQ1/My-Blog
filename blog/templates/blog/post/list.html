@@ -11,7 +11,7 @@
 				<h3 class="title mb-3 pb-3">Posts tagged with "{{ tag.name }}"</h3>
 			{% endif %}
 			{% for post in posts %}
-				<div class="item mb-5" style="max-height: 18.75rem; overflow: hidden;">
+				<div class="item mb-5">
 				    <div class="media">
 					    <img class="mr-3 img-fluid post-thumb d-none d-md-flex" src="{{ post.thumbnail.url }}" alt="image" style="min-width: 110px;">
 					    <div class="media-body">
