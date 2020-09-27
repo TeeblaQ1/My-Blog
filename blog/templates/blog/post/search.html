@@ -15,7 +15,7 @@
 			{% for post in results %}
 					<div class="item mb-5">
 					    <div class="media">
-						    <img class="mr-3 img-fluid post-thumb d-none d-md-flex" src="assets/images/blog/blog-post-thumb-7.jpg" alt="image">
+						    <img class="mr-3 img-fluid post-thumb d-none d-md-flex" src="{{ post.thumbnail.url }}" alt="image">
 						    <div class="media-body">
 							    <h3 class="title mb-1"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h3>
 							    <div class="meta mb-1">

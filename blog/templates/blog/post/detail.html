@@ -42,7 +42,7 @@
 					{% endwith %}
 				</div>
 			</header>
-			<div class="blog-post-body text-justify">
+			<div class="blog-post-body">
 				{{ post.body|markdown}}
 				<a href="#top" ><i class="fa fa-arrow-up mr-2"></i>Back To Top</a><br><br>
 				<strong class="mr-2">SHARE ARTICLE:</strong>{% post_to_facebook post.get_absolute_url "Facebook" %}{% post_to_twitter post.get_absolute_url "Twitter" %}{% post_to_whatsapp post.get_absolute_url "WhatsApp" %}{% send_email object.title "New Article: {{ post.title }}. Check it out!" post.get_absolute_url "Email" %}
