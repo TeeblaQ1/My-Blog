@@ -26,7 +26,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'brfxce@=)p!vt#c+fm!&4)-)=4o&d8
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['teeblaqblog.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = ['teeblaq.herokuapp.com', 'localhost']
 
 SITE_ID = 1
 
