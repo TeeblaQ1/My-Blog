@@ -1,12 +1,13 @@
-{% extends "blog/base2.html" %}
+{% extends "blog/base.html" %}
 {% load blog_tags %}
 
 {% block title %}My Blog{% endblock %}
-
+{% block articles %}active{% endblock %}
 {% block content %}
 
 	<section class="blog-list px-3 py-5 p-md-5 min-vh-100">
 		<div class="container">
+			<span><a href="{% url 'blog:post_index' %}">Home</a> &raquo; Articles</span><br><br>
 			{% if tag %}
 				<h3 class="title mb-3 pb-3">Posts tagged with "{{ tag.name }}"</h3>
 			{% endif %}

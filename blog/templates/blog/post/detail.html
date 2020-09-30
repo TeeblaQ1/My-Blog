@@ -1,4 +1,4 @@
-{% extends "blog/base4.html" %}
+{% extends "blog/base.html" %}
 {% load blog_tags %}
 {% load social_share %}
 
@@ -9,6 +9,7 @@
 {% block content %}
 	<article class="blog-post px-3 py-5 p-md-5 min-vh-100" id="top">
 		<div class="container">
+			<span><a href="{% url 'blog:post_index' %}">Home</a> &raquo; <a href="{% url 'blog:post_list' %}">Articles</a> &raquo; {{ post.title }}</span><br>
 			<header class="blog-post-header">
 				<h2 class="title mb-2">{{ post.title }}</h2>
 				<div class="meta mb-3">
@@ -90,7 +91,7 @@
 			{% for comment in comments %}
 				<div class="comment jumbotron theme-bg-light px-0 py-0">
 					<p class="info">
-						<em>{{ comment.name }}</em> commented. {{ comment.created }}
+						<strong><em>{{ comment.name }}</em></strong> commented. {{ comment.created }}
 					</p>
 					{{ comment.body|linebreaks }}
 				</div>

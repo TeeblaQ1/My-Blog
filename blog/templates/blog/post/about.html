@@ -1,11 +1,12 @@
-{% extends "blog/base3.html" %}
+{% extends "blog/base.html" %}
 {% load blog_tags %}
-
+{% block title %}About{% endblock %}
+{% block about %}active{% endblock %}
 {% block content %}
 <article class="about-section py-5">
 		    <div class="container">
+		    	<span><a href="{% url 'blog:post_index' %}">Home</a> &raquo; About</span><br>
 			    <h2 class="title mb-3">About Me</h2>
-			    
 			    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. </p>
 			    <figure><img class="img-fluid" src="assets/images/about-me.jpg" alt="image"></figure>
 			    <h5 class="mt-5">About The Blog</h5>

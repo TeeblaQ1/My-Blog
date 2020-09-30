@@ -1,9 +1,7 @@
-{% extends "blog/base3.html" %}
+{% extends "blog/base.html" %}
 
-{% block title %}
-	Contact Us
-{% endblock %}
-
+{% block title %}Contact Us{% endblock %}
+{% block contact %}active{% endblock %}
 {% block content %}
 
 	{% if messages %}
@@ -16,9 +14,10 @@
 
 	<section id="contact" class="section-padding theme-bg-light py-3 min-vh-100">
       <div class="container">
+      	<span><a href="{% url 'blog:post_index' %}">Home</a> &raquo; Contact Us</span><br>
         <div class="row">
           <div class="col-md-12 text-center">
-            <h2 class="service-title pad-bt15 text-primary pt-3">KEEP IN TOUCH WITH US</h2>
+            <h2 class="service-title pad-bt15 text-primary">KEEP IN TOUCH WITH US</h2>
             <p class="sub-title pad-bt15">We'd love to hear from you! Please drop us a line if you have any query or question.</p>
             <hr class="bottom-line white-bg">
           </div>
