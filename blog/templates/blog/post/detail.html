@@ -84,22 +84,55 @@
 			{% endfor %}
 			<hr>
 			{% with comments.count as total_comments %}
-				{% if comments.count > 0 %}
-					<h5 id="comment">{{ total_comments }} thought{{ total_comments|pluralize }} on "{{ post.title }}"</h5>
+				{% if total_comments > 0 %}
+					<h5 id="comment" class="px-2">{{ total_comments }} thought{{ total_comments|pluralize }} on "{{ post.title }}"</h5>
 				{% endif %}
 			{% endwith %}
 			{% for comment in comments %}
-				<div class="comment jumbotron theme-bg-light px-0 py-0">
-					<p class="info">
-						<strong><em>{{ comment.name }}</em></strong> commented. {{ comment.created }}
+				<div class="comment jumbotron theme-bg-light px-2 py-0">
+					<p class="info mb-0">
+						<strong><em>{{ comment.name }}</em></strong> commented | {{ comment.created }}
 					</p>
 					{{ comment.body|linebreaks }}
+					<div class="navbar-nav ml-auto action-buttons">
+							<div class="nav-item dropdown">
+								<a href="#" data-toggle="dropdown" class="nav-link mr-4">Reply</a>
+			                		<div class="dropdown-menu action-form">
+									  <form action="" method="post" role="form" class="contactForm">
+						                <div class="col-md-12 padding-right-zero">
+						                  <div class="form-group">
+						                    <input type="text" name="name" class="form-control" id="id_name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars"/>
+						                    <div class="validation"></div>
+						                  </div>
+						                </div>
+						                <div class="col-md-12">
+						                  <div class="form-group">
+						                    <input type="text" name="email" class="form-control" id="id_email" placeholder="Your Email" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+						                    <div class="validation"></div>
+						                  </div>
+						                </div>
+						                <div class="col-md-12">
+						                  <div class="form-group">
+						                    <textarea id="id_body" class="form-control" name="body" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Type in your comment here..."></textarea>
+						                  </div>
+						                  <!-- Hidden input for parent comment.id -->
+						            	  <input type="hidden" name="parent_id" value="{{ comment.id }}">
+						                  <button type="submit" class="btn btn-primary btn-submit mb-3">Reply</button>
+						                </div>
+						                {% csrf_token %}
+						              </form>
+			                		</div>
+							</div>
+						</div>
+					{% for reply in comment.replies.all %}
+			            <p class="info ml-3 mb-0"><strong><em>{{ reply.name }}</em></strong> <em>replied</em> <strong><em>{{ comment.name }}</em></strong> | {{ reply.created }}</p>
+			            <li class="ml-3 mb-2" style="list-style: none;">{{ reply.body }}</li>
+			        {% endfor %}
 				</div>
 			{% empty %}
 			<strong><em>Be the first to comment!</em></strong>
 			{% endfor %}
 			{% if new_comment %}
-				<strong>Your comment has been added</strong>
 				<section id="contact" class="section-padding theme-bg-light py-3">
 			      <div class="container">
 			        <div class="row">
@@ -112,7 +145,7 @@
 			              <form action="" method="post" role="form" class="contactForm">
 			                <div class="col-md-6 padding-right-zero">
 			                  <div class="form-group">
-			                    <input type="text" name="name" class="form-control" id="id_name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars"/>
+			                    <input type="text" name="name" class="form-control" id="id_name" placeholder="Your Name" data-rule="minlen:3" data-msg="Please enter at least 4 chars"/>
 			                    <div class="validation"></div>
 			                  </div>
 			                </div>
@@ -135,6 +168,7 @@
 			        </div>
 			      </div>
 			    </section>
+				<script>alert('Your comment has been added')</script>
 			{% else %}
 				<section id="contact" class="section-padding theme-bg-light py-3">
 			      <div class="container">
@@ -174,5 +208,4 @@
 			{% endif %}
 		</div>	
 	</article>
-
 {% endblock %}

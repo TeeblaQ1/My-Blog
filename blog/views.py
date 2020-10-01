@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404, redirect, HttpResponseRedirect
 from .models import Post, Comment
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .forms import EmailPostForm, CommentForm, SearchForm, ContactUsForm
@@ -55,7 +55,7 @@ def post_detail(request, post):
 
     read_length = post.read_length
     # List of active comments for this post
-    comments = post.comments.filter(active=True)
+    comments = post.comments.filter(active=True, parent__isnull=True)
 
     new_comment = None
 
@@ -63,6 +63,22 @@ def post_detail(request, post):
         # A comment was posted
         comment_form = CommentForm(data=request.POST)
         if comment_form.is_valid():
+            parent_obj = None
+            # get parent comment id from hidden input
+            try:
+                # id integer e.g. 15
+                parent_id = int(request.POST.get('parent_id'))
+            except:
+                parent_id = None
+            # if parent_id has been submitted get parent_obj id
+            if parent_id:
+                parent_obj = Comment.objects.get(id=parent_id)
+                # if parent object exist
+                if parent_obj:
+                    # create reply comment object
+                    reply_comment = comment_form.save(commit=False)
+                    # assign parent_obj to reply comment
+                    reply_comment.parent = parent_obj
             # Create comment object but don't save to database yet
             new_comment = comment_form.save(commit=False)
             # Assign the current post to the comment
