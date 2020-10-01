@@ -39,7 +39,7 @@
 									{% endif %}
 								{% endwith %}
 							</div>
-						    <div class="intro">{{ post.body|markdown|truncatewords_html:35 }}</div>
+						    <div class="intro">{{ post.description|safe|truncatewords_html:35 }}</div>
 						    <a class="more-link" href="{{ post.get_absolute_url }}">Read more &rarr;</a>
 					    </div><!--//media-body-->
 				    </div><!--//media-->

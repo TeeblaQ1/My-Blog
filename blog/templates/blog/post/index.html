@@ -23,11 +23,11 @@
 		<h3 class="title mt-3 container text-center">
 		<p>Latest Articles</p>
 		<small style="font-family: 'Helvetica', FontAwesome, sans-serif; font-size: 20px">We are committed to giving you top-notch articles consistently.</small>
-		<hr width="80px" style="color: green; border-top: 5px solid rgba(94,204,169,0.5);">
+		<hr width="80px" style="border-top: 5px solid rgba(94,204,169,0.5);">
 		</h3>
 		{% show_latest_posts %}
 		<h3 class="title mb-3 container text-center">
-		<hr class="bg-dark" width="80px" style="border-top: 5px solid rgba(94,204,169,0.5);">
+		<hr class="bg-primary" width="80px" style="border-top: 5px solid rgba(94,204,169,0.5);">
 		<p>Most Commented Articles</p>
 		</h3>
 		{% get_most_commented_posts as most_commented_posts %}
@@ -71,7 +71,7 @@
 											{% endif %}
 										{% endwith %}
 									</div>
-								    <div class="intro">{{ post.body|markdown|truncatewords_html:35 }}</div>
+								    <div class="intro">{{ post.description|safe|truncatewords_html:35 }}</div>
 								    <a class="more-link" href="{{ post.get_absolute_url }}">Read more &rarr;</a>
 							    </div><!--//media-body-->
 						    </div><!--//media-->

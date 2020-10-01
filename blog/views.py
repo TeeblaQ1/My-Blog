@@ -11,7 +11,7 @@ from django.contrib import messages
 def home_page(request, tag_slug=None):
     object_list = Post.published.all()
     tag = None
-    
+
     if tag_slug:
         tag = get_object_or_404(Tag, slug=tag_slug)
         object_list = object_list.filter(tags__in=[tag])
@@ -48,12 +48,10 @@ def post_list(request, tag_slug=None):
         posts = paginator.page(paginator.num_pages)
     return render(request, 'blog/post/list.html', {'page': page, 'posts': posts, 'tag': tag})
 
-def post_detail(request, year, month, day, post):
+def post_detail(request, post):
     post = get_object_or_404(Post, slug=post,
                              status='published',
-                             publish__year=year,
-                             publish__month=month,
-                             publish__day=day)
+                             )
 
     read_length = post.read_length
     # List of active comments for this post
