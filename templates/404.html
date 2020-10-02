@@ -1,10 +1,13 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>404 - Page Not Found</title>
-</head>
-<body>
-	<h1>404 Page Not Found</h1>
-	<p>This page does not exist yet, click here to go <a href="{% url 'blog:post_index' %}">home</a></p>
-</body>
-</html>
+{% extends "blog/base.html" %}
+{% load static %}
+
+{% block content %}
+	<div class="container min-vh-100 blog-list ">
+		<div class="text-center mt-3" style="margin-top: 10rem !important">
+			<h1 class="text-primary">Oops! It seems there's an error 404</h1>
+			<p>The page you're looking for cannot be found. You can go back <a href="{% url 'blog:post_index' %}">home</a> or use the search bar to look for the page.</p>
+			<br><br>
+			<p>If you think it is a broken link, please <a href="{% url 'blog:contactus' %}">contact us</a></p>
+		</div>
+	</div>
+{% endblock %}
