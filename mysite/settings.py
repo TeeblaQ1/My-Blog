@@ -24,9 +24,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'brfxce@=)p!vt#c+fm!&4)-)=4o&d88(qb@i+8#n7fkc4&k3-u')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['teeblaq.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = ['teeblaq.herokuapp.com', '127.0.0.1']
 
 SITE_ID = 1
 
@@ -132,7 +132,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/')
 
 STATICFILES_DIRS = (
     os.path.join('SITE_ROOT', '..', 'static'),
@@ -168,3 +168,4 @@ CKEDITOR_CONFIGS = {
 }
 
 ###################################
+

@@ -19,7 +19,7 @@
 					</span>
 					<span class="comment">
 						<a href="#comment">
-						{% with comments.count as total_comments %}
+						{% with post.comments.count as total_comments %}
 						{{ total_comments }} comment{{ total_comments|pluralize}}
 						{% endwith %}
 						</a>
@@ -83,7 +83,7 @@
 				<em>There are no similar posts yet.</em>
 			{% endfor %}
 			<hr>
-			{% with comments.count as total_comments %}
+			{% with post.comments.count as total_comments %}
 				{% if total_comments > 0 %}
 					<h5 id="comment" class="px-2">{{ total_comments }} thought{{ total_comments|pluralize }} on "{{ post.title }}"</h5>
 				{% endif %}
@@ -96,7 +96,7 @@
 					{{ comment.body|linebreaks }}
 					<div class="navbar-nav ml-auto action-buttons">
 							<div class="nav-item dropdown">
-								<a href="#" data-toggle="dropdown" class="nav-link mr-4">Reply</a>
+								<a href="#" data-toggle="dropdown" class="nav-link mr-4 pt-0">Reply</a>
 			                		<div class="dropdown-menu action-form">
 									  <form action="" method="post" role="form" class="contactForm">
 						                <div class="col-md-12 padding-right-zero">
@@ -137,7 +137,7 @@
 			      <div class="container">
 			        <div class="row">
 			          <div class="col-md-12 text-center">
-			            <h2 class="service-title pad-bt15 pt-3">Leave a comment</h2>
+			            <h2 class="service-title pad-bt15">Leave a comment</h2>
 			            <hr class="bottom-line white-bg">
 			          </div>
 			          <div class="col-md-8 col-sm-8 col-xs-12">
@@ -174,7 +174,7 @@
 			      <div class="container">
 			        <div class="row">
 			          <div class="col-md-12 text-center">
-			            <h2 class="service-title pad-bt15 pt-3">Leave a comment</h2>
+			            <h2 class="service-title pad-bt15">Leave a comment</h2>
 			            <hr class="bottom-line white-bg">
 			          </div>
 			          <div class="col-md-8 col-sm-8 col-xs-12">
