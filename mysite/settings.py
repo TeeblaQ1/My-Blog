@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'brfxce@=)p!vt#c+fm!&4)-)=4o&d88(qb@i+8#n7fkc4&k3-u')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['teeblaq.herokuapp.com', '127.0.0.1']
 
